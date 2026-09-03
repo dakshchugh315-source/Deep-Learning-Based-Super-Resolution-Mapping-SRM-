@@ -8,3 +8,10 @@ test_lr/
 test_hr/
 __pycache__/
 *.pyc
+srm/.next/
+srm/node_modules/
+.next/
+node_modules/
+srm/node_modules/
+srm/.next/
+srm/.backups/

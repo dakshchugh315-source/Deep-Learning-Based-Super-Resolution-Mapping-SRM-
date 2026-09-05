@@ -1,0 +1,8 @@
+'use client'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { cn } from '@/lib/utils'
+import { Orbit, Menu } from 'lucide-react'
+import { useState } from 'react'
+const links = [['/compare','Compare'],['/analytics','Analytics'],['/history','History'],['/about','About']]
+export function Navbar() { const pathname = usePathname(); const [open,setOpen]=useState(false); return <header className="fixed inset-x-0 top-0 z-50 border-b border-line/70 bg-ink/85 backdrop-blur-xl"><div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4"><Link href="/" className="flex items-center gap-3 font-mono text-xs tracking-[0.24em] text-foreground"><Orbit className="size-5 text-cyan" /> SRM<span className="text-muted-foreground">/ PLATFORM</span></Link><button className="text-muted-foreground md:hidden" onClick={()=>setOpen(!open)} aria-label="Toggle navigation"><Menu /></button><nav className={cn('absolute left-0 right-0 top-full flex-col gap-5 border-b border-line bg-ink px-6 py-5 md:static md:flex md:flex-row md:items-center md:border-0 md:bg-transparent md:p-0', open?'flex':'hidden')} aria-label="Primary navigation">{links.map(([href,label])=><Link key={href} href={href} onClick={()=>setOpen(false)} className={cn('font-mono text-[11px] uppercase tracking-[0.18em] transition-colors hover:text-cyan',pathname===href?'text-cyan':'text-muted-foreground')}>{label}</Link>)}<Link href="/upload" className="border border-cyan/60 px-4 py-2 font-mono text-[11px] uppercase tracking-[0.18em] text-cyan transition-colors hover:bg-cyan hover:text-ink">Open workspace</Link></nav></div></header> }
